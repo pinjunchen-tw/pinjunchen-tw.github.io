@@ -368,7 +368,7 @@ h2 {
 
 .compact-card {
   grid-template-columns: 70px minmax(0, 1fr);
-  padding: 20px 24px;
+  padding: 26px 30px;
 }
 
 .timeline-card:hover,
