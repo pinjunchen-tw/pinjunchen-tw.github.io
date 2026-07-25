@@ -85,9 +85,9 @@ nav {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
+  grid-template-columns: 1.35fr 1fr;
   align-items: center;
-  gap: 64px;
+  gap: 48px;
 }
 
 h1 {
@@ -197,6 +197,14 @@ h2 {
   background: white;
   border: 1px solid var(--border);
   border-radius: 12px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(31, 41, 51, 0.07);
 }
 
 .card h3 {
@@ -220,6 +228,7 @@ h2 {
 .content li {
   margin-bottom: 8px;
 }
+
 .research-project {
   margin-bottom: 28px;
   padding: 28px;
@@ -325,23 +334,20 @@ h2 {
   margin: 0;
   color: var(--muted);
 }
-.timeline-grid {
-  gap: 20px;
-}
-.compact-grid {
-  gap: 14px;
-}
 .timeline-grid,
 .compact-grid {
   display: grid;
   grid-template-columns: 1fr;
 }
-.timeline-card {
-  padding: 26px 30px;
+
+.timeline-grid {
+  gap: 20px;
 }
-.compact-card {
-  padding: 20px 24px;
+
+.compact-grid {
+  gap: 14px;
 }
+
 .timeline-card,
 .compact-card {
   display: grid;
@@ -356,15 +362,19 @@ h2 {
     box-shadow 0.2s ease;
 }
 
-.timeline-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(31, 41, 51, 0.08);
+.timeline-card {
+  padding: 26px 30px;
 }
 
-.timeline-location {
-  margin: 0 0 6px;
-  color: var(--muted);
-  font-size: 14px;
+.compact-card {
+  grid-template-columns: 70px minmax(0, 1fr);
+  padding: 20px 24px;
+}
+
+.timeline-card:hover,
+.compact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(31, 41, 51, 0.08);
 }
 
 .logo-box {
@@ -377,6 +387,12 @@ h2 {
   background: white;
   border: 1px solid var(--border);
   border-radius: 12px;
+}
+
+.compact-card .logo-box {
+  width: 70px;
+  height: 70px;
+  padding: 10px;
 }
 
 .logo-box img {
@@ -413,34 +429,21 @@ h2 {
 }
 
 .timeline-role {
-  margin: 6px 0;
+  margin: 6px 0 0;
   color: var(--accent);
   font-weight: 600;
+}
+
+.timeline-location {
+  margin: 2px 0 6px;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .timeline-description {
   margin: 0;
   color: var(--muted);
 }
-
-/* Smaller cards for visiting and international experience */
-.compact-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.compact-card {
-  padding: 22px;
-}
-
-.compact-card .logo-box {
-  width: 70px;
-  height: 70px;
-}
-
-.compact-card {
-  grid-template-columns: 70px minmax(0, 1fr);
-}
-
 footer {
   padding: 36px 0;
   color: var(--muted);
