@@ -139,6 +139,7 @@ h1 {
 }
 
 .profile-photo-wrapper {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,12 +148,13 @@ h1 {
 .profile-photo {
   display: block;
   width: 100%;
-  max-width: 380px;
+  max-width: 340px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center top;
   border: 1px solid var(--border);
   border-radius: 16px;
+  margin: 0 auto;
 }
 
 section {
