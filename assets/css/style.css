@@ -138,24 +138,21 @@ h1 {
   background: white;
 }
 
-.profile-placeholder {
-  min-height: 340px;
+.profile-photo-wrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 32px;
-  color: var(--muted);
-  text-align: center;
-  background: var(--section-background);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  align-items: center;
 }
 
 .profile-photo {
+  display: block;
   width: 100%;
   max-width: 380px;
-  border-radius: 16px;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--border);
+  border-radius: 16px;
 }
 
 section {
