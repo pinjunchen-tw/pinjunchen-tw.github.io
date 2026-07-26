@@ -664,7 +664,8 @@ h2 {
 }
 
 .gallery-card a {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   color: var(--text);
 }
@@ -678,6 +679,7 @@ h2 {
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.35s ease;
 }
 
@@ -685,8 +687,11 @@ h2 {
   transform: scale(1.025);
 }
 
-.gallery-card-content {
-  padding: 22px 24px 25px;
+.gallery-card-content p:last-child {
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: 6px;
+  color: var(--muted);
 }
 
 .gallery-meta {
