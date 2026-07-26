@@ -1118,6 +1118,30 @@ h2 {
   object-position: right center;
 }
 
+.photo-gallery-item.show-full img,
+.photo-series-hero.show-full img {
+  width: 100%;
+  height: auto;
+  max-height: 720px;
+  object-fit: contain;
+  object-position: center;
+  background: var(--section-background);
+}
+
+.photo-gallery-item.portrait-photo {
+  max-width: 440px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.photo-gallery-item.portrait-photo img {
+  width: 100%;
+  height: auto;
+  max-height: 720px;
+  object-fit: contain;
+  background: var(--section-background);
+}
+
 .gallery-page-intro {
   max-width: 780px;
   margin: 0 auto;
@@ -1320,5 +1344,13 @@ footer {
   .photo-gallery-item img,
   .photo-gallery-item.photo-wide img {
     height: 230px;
+  }
+}
+
+@media (max-width: 800px) {
+  .photo-gallery-item.show-full img,
+  .photo-series-hero.show-full img {
+    height: auto;
+    max-height: none;
   }
 }
