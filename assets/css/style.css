@@ -54,7 +54,7 @@ header {
   backdrop-filter: blur(8px);
 }
 
-nav {
+header nav {
   min-height: 68px;
   display: flex;
   align-items: center;
@@ -1185,6 +1185,31 @@ h2 {
   }
 }
 
+.gallery-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.gallery-breadcrumb a {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.gallery-breadcrumb a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.gallery-breadcrumb span:last-child {
+  color: var(--text);
+  font-weight: 600;
+}
+
 footer {
   padding: 36px 0;
   color: var(--muted);
@@ -1193,13 +1218,12 @@ footer {
 }
 
 @media (max-width: 800px) {
-  nav {
+  header nav {
     padding: 14px 0;
     align-items: flex-start;
     flex-direction: column;
     gap: 10px;
   }
-
   .nav-links {
     gap: 12px 16px;
   }
