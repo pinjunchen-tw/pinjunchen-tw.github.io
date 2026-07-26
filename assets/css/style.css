@@ -755,6 +755,133 @@ h2 {
   }
 }
 
+.travel-list {
+  display: grid;
+  gap: 30px;
+}
+
+.travel-card {
+  display: grid;
+  grid-template-columns:
+    minmax(280px, 0.95fr)
+    minmax(0, 1.05fr);
+  overflow: hidden;
+  color: var(--text);
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.travel-card:hover {
+  text-decoration: none;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(31, 41, 51, 0.1);
+}
+
+.travel-card-image {
+  min-height: 330px;
+  overflow: hidden;
+}
+
+.travel-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 330px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+.travel-card:hover .travel-card-image img {
+  transform: scale(1.025);
+}
+
+.travel-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 34px 36px;
+}
+
+.travel-meta {
+  margin: 0 0 7px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.travel-card-content h2 {
+  margin: 0 0 14px;
+  font-size: 27px;
+  line-height: 1.35;
+}
+
+.travel-card-content p {
+  margin-top: 0;
+  color: var(--muted);
+}
+
+.text-link {
+  margin-top: 8px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.travel-photography-callout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.travel-photography-callout h2 {
+  margin-bottom: 12px;
+}
+
+.travel-photography-callout .section-description {
+  max-width: 680px;
+}
+
+.travel-photography-callout .button-row {
+  flex-shrink: 0;
+}
+
+.nav-links a[aria-current="page"] {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .travel-card {
+    grid-template-columns: 1fr;
+  }
+
+  .travel-card-image,
+  .travel-card-image img {
+    min-height: 0;
+  }
+
+  .travel-card-image img {
+    aspect-ratio: 16 / 9;
+  }
+
+  .travel-card-content {
+    padding: 26px;
+  }
+
+  .travel-photography-callout {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
 footer {
   padding: 36px 0;
   color: var(--muted);
