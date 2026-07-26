@@ -564,6 +564,51 @@ h2 {
   }
 }
 
+.honors-list {
+  display: grid;
+  gap: 14px;
+}
+
+.honor-item {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+  padding: 22px 26px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.honor-year {
+  color: var(--accent);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.honor-item h3 {
+  margin: 0 0 3px;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.honor-item p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.section-action {
+  margin-top: 26px;
+}
+
+@media (max-width: 650px) {
+  .honor-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 20px;
+  }
+}
+
 footer {
   padding: 36px 0;
   color: var(--muted);
