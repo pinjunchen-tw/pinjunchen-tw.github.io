@@ -1098,6 +1098,26 @@ h2 {
   text-align: center;
 }
 
+.photo-series-hero img.photo-focus-top,
+.photo-gallery-item img.photo-focus-top {
+  object-position: center top;
+}
+
+.photo-series-hero img.photo-focus-bottom,
+.photo-gallery-item img.photo-focus-bottom {
+  object-position: center bottom;
+}
+
+.photo-series-hero img.photo-focus-left,
+.photo-gallery-item img.photo-focus-left {
+  object-position: left center;
+}
+
+.photo-series-hero img.photo-focus-right,
+.photo-gallery-item img.photo-focus-right {
+  object-position: right center;
+}
+
 .gallery-page-intro {
   max-width: 780px;
   margin: 0 auto;
