@@ -530,6 +530,39 @@ h2 {
   }
 }
 
+.language-list {
+  max-width: 760px;
+  border-top: 1px solid var(--border);
+}
+
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.language-name {
+  font-weight: 650;
+}
+
+.language-level {
+  color: var(--muted);
+  text-align: right;
+}
+
+@media (max-width: 650px) {
+  .language-item {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .language-level {
+    text-align: left;
+  }
+}
+
 footer {
   padding: 36px 0;
   color: var(--muted);
