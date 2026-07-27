@@ -255,5 +255,108 @@
       © 2026 Pin-Jun Chen · Built with GitHub Pages
     </div>
   </footer>
+
+  <div
+  class="image-lightbox"
+  id="imageLightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-label="Expanded photograph"
+>
+  <button
+    class="lightbox-close"
+    id="lightboxClose"
+    type="button"
+    aria-label="Close enlarged photograph"
+  >
+    ×
+  </button>
+
+  <div class="lightbox-content">
+    <img
+      id="lightboxImage"
+      src=""
+      alt=""
+    >
+
+    <p
+      class="lightbox-caption"
+      id="lightboxCaption"
+    ></p>
+  </div>
+</div>
+
+<script>
+  const galleryImages = document.querySelectorAll(
+    ".photo-series-hero img, " +
+    ".photo-gallery-item img, " +
+    ".portrait-story-image img"
+  );
+
+  const lightbox = document.getElementById("imageLightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const lightboxCaption = document.getElementById("lightboxCaption");
+  const lightboxClose = document.getElementById("lightboxClose");
+
+  function openLightbox(image) {
+    const figure = image.closest("figure");
+    const caption = figure?.querySelector("figcaption");
+
+    lightboxImage.src = image.currentSrc || image.src;
+    lightboxImage.alt = image.alt || "Enlarged photograph";
+    lightboxCaption.textContent = caption?.textContent.trim() || "";
+
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+
+    lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+
+    lightboxImage.src = "";
+  }
+
+  galleryImages.forEach((image) => {
+    image.classList.add("lightbox-enabled");
+    image.setAttribute("tabindex", "0");
+    image.setAttribute("role", "button");
+    image.setAttribute("aria-label", `Enlarge image: ${image.alt}`);
+
+    image.addEventListener("click", () => {
+      openLightbox(image);
+    });
+
+    image.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox(image);
+      }
+    });
+  });
+
+  lightboxClose.addEventListener("click", closeLightbox);
+
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      lightbox.classList.contains("is-open")
+    ) {
+      closeLightbox();
+    }
+  });
+</script>
+  
 </body>
 </html>
