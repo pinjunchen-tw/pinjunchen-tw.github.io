@@ -1256,19 +1256,15 @@ h2 {
 
 .portrait-feature {
   display: grid;
-  grid-template-columns:
-    minmax(260px, 420px)
-    minmax(0, 1fr);
-  gap: 48px;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 42px;
   align-items: center;
   max-width: 900px;
-  margin: 0 auto 56px;
+  margin: 0 auto 52px;
 }
 
 .portrait-feature.reverse {
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(260px, 420px);
+  grid-template-columns: minmax(0, 1fr) 300px;
 }
 
 .portrait-feature.reverse .portrait-feature-image {
@@ -1280,32 +1276,38 @@ h2 {
 }
 
 .portrait-feature-image {
+  width: 300px;
+  aspect-ratio: 300 / 438;
   margin: 0;
+  overflow: hidden;
+  justify-self: start;
+  background: var(--section-background);
+  border-radius: 12px;
+}
+
+.portrait-feature.reverse .portrait-feature-image {
+  justify-self: end;
 }
 
 .portrait-feature-image img {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 720px;
+  height: 100%;
   object-fit: contain;
-  border-radius: 12px;
-  background: var(--section-background);
+  object-position: center;
 }
 
 .portrait-feature-image figcaption {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 14px;
+  display: none;
 }
 
 .portrait-feature-content {
-  max-width: 520px;
+  max-width: 500px;
 }
 
 .portrait-feature-content h3 {
   margin: 0 0 14px;
-  font-size: 28px;
+  font-size: 27px;
   line-height: 1.35;
 }
 
@@ -1313,7 +1315,7 @@ h2 {
   margin: 0;
   color: var(--muted);
   font-size: 17px;
-  line-height: 1.85;
+  line-height: 1.8;
 }
 
 @media (max-width: 800px) {
@@ -1324,18 +1326,18 @@ h2 {
     margin-bottom: 44px;
   }
 
-  .portrait-feature.reverse .portrait-feature-image,
+  .portrait-feature-image,
+  .portrait-feature.reverse .portrait-feature-image {
+    order: initial;
+    width: min(100%, 300px);
+    justify-self: center;
+  }
+
+  .portrait-feature-content,
   .portrait-feature.reverse .portrait-feature-content {
     order: initial;
-  }
-
-  .portrait-feature-image {
-    width: min(100%, 440px);
+    max-width: 600px;
     margin: 0 auto;
-  }
-
-  .portrait-feature-content {
-    max-width: none;
   }
 }
 
