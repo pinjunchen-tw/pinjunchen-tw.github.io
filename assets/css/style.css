@@ -1254,6 +1254,91 @@ h2 {
   font-weight: 600;
 }
 
+.portrait-feature {
+  display: grid;
+  grid-template-columns:
+    minmax(260px, 420px)
+    minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 56px;
+}
+
+.portrait-feature.reverse {
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(260px, 420px);
+}
+
+.portrait-feature.reverse .portrait-feature-image {
+  order: 2;
+}
+
+.portrait-feature.reverse .portrait-feature-content {
+  order: 1;
+}
+
+.portrait-feature-image {
+  margin: 0;
+}
+
+.portrait-feature-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 720px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: var(--section-background);
+}
+
+.portrait-feature-image figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.portrait-feature-content {
+  max-width: 520px;
+}
+
+.portrait-feature-content h3 {
+  margin: 0 0 14px;
+  font-size: 28px;
+  line-height: 1.35;
+}
+
+.portrait-feature-content p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+@media (max-width: 800px) {
+  .portrait-feature,
+  .portrait-feature.reverse {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 44px;
+  }
+
+  .portrait-feature.reverse .portrait-feature-image,
+  .portrait-feature.reverse .portrait-feature-content {
+    order: initial;
+  }
+
+  .portrait-feature-image {
+    width: min(100%, 440px);
+    margin: 0 auto;
+  }
+
+  .portrait-feature-content {
+    max-width: none;
+  }
+}
+
 footer {
   padding: 36px 0;
   color: var(--muted);
