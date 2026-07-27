@@ -255,115 +255,154 @@
       © 2026 Pin-Jun Chen · Built with GitHub Pages
     </div>
   </footer>
-
-  <dialog
-    class="image-lightbox"
-    id="imageLightbox"
-    aria-label="Expanded photograph"
-  >
-    <button
-      class="lightbox-close"
-      id="lightboxClose"
-      type="button"
-      aria-label="Close enlarged photograph"
+  
+    <div
+      class="pj-lightbox"
+      id="pjLightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-label="Expanded photograph"
     >
-      ×
-    </button>
-  
-    <div class="lightbox-content">
-      <img
-        id="lightboxImage"
-        src=""
-        alt=""
+      <button
+        class="pj-lightbox__close"
+        id="pjLightboxClose"
+        type="button"
+        aria-label="Close enlarged photograph"
       >
-  
-      <p
-        class="lightbox-caption"
-        id="lightboxCaption"
-      ></p>
+        ×
+      </button>
+    
+      <figure class="pj-lightbox__figure">
+        <img
+          class="pj-lightbox__image"
+          id="pjLightboxImage"
+          src=""
+          alt=""
+        >
+    
+        <figcaption
+          class="pj-lightbox__caption"
+          id="pjLightboxCaption"
+        ></figcaption>
+      </figure>
     </div>
-  </dialog>
 
     <script>
-    const galleryImages = document.querySelectorAll(
-      ".photo-gallery-item img, " +
-      ".portrait-story-image img, " +
-      ".photo-series-hero img"
-    );
-  
-    const lightbox = document.getElementById("imageLightbox");
-    const lightboxImage = document.getElementById("lightboxImage");
-    const lightboxCaption = document.getElementById("lightboxCaption");
-    const lightboxClose = document.getElementById("lightboxClose");
-  
-    function openLightbox(image) {
-      const figure = image.closest("figure");
-      const caption = figure
-        ? figure.querySelector("figcaption")
-        : null;
-  
-      lightboxImage.src = image.currentSrc || image.src;
-      lightboxImage.alt = image.alt || "Expanded photograph";
-  
-      lightboxCaption.textContent = caption
-        ? caption.textContent.trim()
-        : "";
-  
-      document.body.classList.add("lightbox-open");
-      lightbox.showModal();
-    }
-  
-    function closeLightbox() {
-      lightbox.close();
-      document.body.classList.remove("lightbox-open");
-  
-      lightboxImage.src = "";
-      lightboxImage.alt = "";
-      lightboxCaption.textContent = "";
-    }
-  
-    galleryImages.forEach((image) => {
-      image.classList.add("lightbox-enabled");
-      image.tabIndex = 0;
-      image.setAttribute("role", "button");
-      image.setAttribute(
-        "aria-label",
-        `Enlarge image: ${image.alt || "photograph"}`
+    document.addEventListener("DOMContentLoaded", function () {
+      const galleryImages = document.querySelectorAll(
+        ".photo-gallery-item img, " +
+        ".portrait-story-image img, " +
+        ".photo-series-hero img"
       );
   
-      image.addEventListener("click", () => {
-        openLightbox(image);
+      const lightbox = document.getElementById("pjLightbox");
+      const lightboxImage = document.getElementById("pjLightboxImage");
+      const lightboxCaption = document.getElementById("pjLightboxCaption");
+      const closeButton = document.getElementById("pjLightboxClose");
+  
+      let lastClickedImage = null;
+  
+      if (
+        !lightbox ||
+        !lightboxImage ||
+        !lightboxCaption ||
+        !closeButton
+      ) {
+        console.error("Lightbox elements were not found.");
+        return;
+      }
+  
+      function openLightbox(image) {
+        const figure = image.closest("figure");
+        const caption = figure
+          ? figure.querySelector("figcaption")
+          : null;
+  
+        lastClickedImage = image;
+  
+        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.alt =
+          image.alt || "Expanded photograph";
+  
+        lightboxCaption.textContent = caption
+          ? caption.textContent.trim()
+          : "";
+  
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+  
+        document.body.classList.add("pj-lightbox-open");
+  
+        closeButton.focus({
+          preventScroll: true
+        });
+      }
+  
+      function closeLightbox() {
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+  
+        document.body.classList.remove("pj-lightbox-open");
+  
+        lightboxImage.src = "";
+        lightboxImage.alt = "";
+        lightboxCaption.textContent = "";
+  
+        if (lastClickedImage) {
+          lastClickedImage.focus({
+            preventScroll: true
+          });
+        }
+      }
+  
+      galleryImages.forEach(function (image) {
+        image.classList.add("pj-zoomable");
+        image.setAttribute("tabindex", "0");
+        image.setAttribute("role", "button");
+  
+        image.setAttribute(
+          "aria-label",
+          "Enlarge image: " +
+            (image.alt || "photograph")
+        );
+  
+        image.addEventListener("click", function () {
+          openLightbox(image);
+        });
+  
+        image.addEventListener("keydown", function (event) {
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+            event.preventDefault();
+            openLightbox(image);
+          }
+        });
       });
   
-      image.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          openLightbox(image);
+      closeButton.addEventListener("click", function () {
+        closeLightbox();
+      });
+  
+      lightbox.addEventListener("click", function (event) {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+  
+      document.addEventListener("keydown", function (event) {
+        if (
+          event.key === "Escape" &&
+          lightbox.classList.contains("is-open")
+        ) {
+          closeLightbox();
         }
       });
     });
-  
-    lightboxClose.addEventListener("click", closeLightbox);
-  
-    lightbox.addEventListener("click", (event) => {
-      const rect = lightbox.getBoundingClientRect();
-  
-      const clickedInside =
-        event.clientX >= rect.left &&
-        event.clientX <= rect.right &&
-        event.clientY >= rect.top &&
-        event.clientY <= rect.bottom;
-  
-      if (!clickedInside) {
-        closeLightbox();
-      }
-    });
-  
-    lightbox.addEventListener("cancel", (event) => {
-      event.preventDefault();
-      closeLightbox();
-    });
   </script>
+
   
 </body>
 </html>
