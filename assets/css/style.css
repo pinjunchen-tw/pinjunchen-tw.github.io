@@ -1254,14 +1254,6 @@ h2 {
   font-weight: 600;
 }
 
-.portrait-feature {
-  display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: 46px;
-  align-items: center;
-  max-width: 900px;
-  margin: 0 auto;
-}
 
 .portrait-feature.reverse {
   grid-template-columns: minmax(0, 1fr) 300px;
@@ -1275,11 +1267,6 @@ h2 {
   order: 1;
 }
 
-.portrait-feature-image {
-  width: 300px;
-  margin: 0;
-  justify-self: start;
-}
 
 .portrait-feature.reverse .portrait-feature-image {
   justify-self: end;
@@ -1303,10 +1290,6 @@ h2 {
   line-height: 1.5;
 }
 
-.portrait-feature-content {
-  max-width: 500px;
-}
-
 .portrait-feature-content h3 {
   margin: 0 0 14px;
   font-size: 27px;
@@ -1318,6 +1301,108 @@ h2 {
   color: var(--muted);
   font-size: 17px;
   line-height: 1.8;
+}
+
+.portrait-section {
+  padding: 64px 0;
+}
+
+.portrait-story {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.portrait-story-image {
+  width: 100%;
+  margin: 0;
+}
+
+.portrait-story-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+}
+
+.portrait-story-image figcaption {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.portrait-story-content {
+  padding-top: 8px;
+}
+
+.portrait-story-content .eyebrow {
+  margin-bottom: 10px;
+}
+
+.portrait-story-content h2 {
+  margin: 0 0 18px;
+  font-size: clamp(32px, 4vw, 44px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.portrait-story-lead {
+  max-width: 600px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.8;
+}
+
+.portrait-story-divider {
+  width: 52px;
+  height: 2px;
+  margin: 28px 0;
+  background: var(--accent);
+}
+
+.portrait-story-content h3 {
+  margin: 0 0 12px;
+  font-size: 25px;
+  line-height: 1.35;
+}
+
+.portrait-story-content p:not(.eyebrow):not(.portrait-story-lead) {
+  max-width: 580px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+@media (max-width: 800px) {
+  .portrait-section {
+    padding: 50px 0;
+  }
+
+  .portrait-story {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .portrait-story-image {
+    width: min(100%, 320px);
+    margin: 0 auto;
+  }
+
+  .portrait-story-content {
+    padding-top: 0;
+  }
+
+  .portrait-story-content h2 {
+    font-size: clamp(30px, 8vw, 40px);
+  }
 }
 
 @media (max-width: 800px) {
